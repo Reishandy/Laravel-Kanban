@@ -5,6 +5,10 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
+@layer utilities {
+    .text-9xl { font-size: 8rem; line-height: 1; }
+}
+
 @theme {
     --font-sans: 'JetBrains Mono', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol', 'Noto Color Emoji';

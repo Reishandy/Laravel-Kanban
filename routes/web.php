@@ -21,7 +21,5 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 // TODO list:
-//  - custom error
-//  - custom pagination
 //  - icon
 //  - laravel starterkit own (remove git and configure default first)

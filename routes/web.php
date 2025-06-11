@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome'); // TODO: Homepage
+    return view('welcome');
 })->name('home');
 
 Route::get('/dashboard', function () {
@@ -17,9 +17,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
-require __DIR__.'/auth.php';
-
-// TODO list:
-//  - icon
-//  - laravel starterkit own (remove git and configure default first)
+require __DIR__ . '/auth.php';

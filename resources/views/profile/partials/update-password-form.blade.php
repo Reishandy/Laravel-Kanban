@@ -55,7 +55,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <button class="btn btn-soft btn-primary">Update Password</button>
+            <button class="btn btn-primary">Update Password</button>
 
             @if (session('status') === 'password-updated')
                 <p

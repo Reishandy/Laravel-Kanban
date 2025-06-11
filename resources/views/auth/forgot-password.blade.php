@@ -21,7 +21,7 @@
                     />
                 </div>
 
-                <button class="btn btn-soft btn-primary">Email Password Reset Link</button>
+                <button class="btn btn-primary">Email Password Reset Link</button>
             </form>
         </div>
     </div>

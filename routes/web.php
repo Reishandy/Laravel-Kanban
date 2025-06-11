@@ -11,9 +11,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 // TODO: Remove
-Route::get('/dummy', function () {
-    return view('auth.verify-email');
-})->name('password.request');
+Route::get('/profile', function () {
+    return view('profile');
+})->name('profile');
 
 
 require __DIR__.'/auth.php';

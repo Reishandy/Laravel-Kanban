@@ -3,6 +3,11 @@
         <div class="card-body flex justify-center">
             <x-title type="login"/>
 
+            <!-- Session Status -->
+            <div class="flex justify-center">
+                <x-auth-session-status class="mt-4" :status="session('status')" />
+            </div>
+
             <div class="divider"></div>
 
             <div class="p-2">

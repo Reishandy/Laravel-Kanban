@@ -1,9 +1,13 @@
 <x-layout.guest>
     <div class="card w-96 bg-base-200 shadow-xl rounded-t-xl rounded-b-none">
         <div class="card-body flex justify-center">
-            <p class="text-justify">Thanks for registering! Before getting started, could you verify your email address
-                by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you
-                another.</p>
+            <p class="text-justify">Please verify your email address. No email? Please check spam or click below to resend.</p>
+
+            @if (session('status') == 'verification-link-sent')
+                <div class="mb-4 font-medium text-sm text-green-600">
+                    A new verification link has been sent to the email address you provided during registration.
+                </div>
+            @endif
 
             <div class="mt-4 flex items-center justify-between">
                 <form method="POST" action="{{ route('verification.send') }}">

@@ -9,7 +9,7 @@
 
 <div class="mb-4">
     @if($label)
-        <label for="{{ $name }}" class="block mb-1 text-sm font-medium">{{ $label }}</label>
+        <label for="{{ $name }}" class="block mb-2 text-sm font-medium">{{ $label }}</label>
     @endif
 
     <label class="input validator">

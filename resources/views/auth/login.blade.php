@@ -6,7 +6,7 @@
             <div class="divider"></div>
 
             <div class="p-2">
-                <form method="POST" action="TODO:">
+                <form method="POST" action="{{ route('login') }}">
                     @csrf
 
                     {{-- Email --}}
@@ -31,6 +31,12 @@
                             required
                         />
                     </div>
+
+                    {{-- Remember Me --}}
+                    <label for="remember_me" class="inline-flex items-center">
+                        <input id="remember_me" type="checkbox" class="checkbox" name="remember">
+                        <span class="ms-2 text-sm text-base-content">Remember me</span>
+                    </label>
 
                     {{-- Forgot and Button --}}
                     <x-forgetnbutton type="login"/>

@@ -6,14 +6,14 @@
             <div class="divider"></div>
 
             <div class="p-2">
-                <form method="POST" action="TODO:">
+                <form method="POST" action="{{ route('register') }}">
                     @csrf
 
                     {{-- Username --}}
                     <div class="mb-4">
                         <x-input
                             type="text"
-                            name="username"
+                            name="name"
                             label="Username"
                             placeholder="Username"
                             required

@@ -47,7 +47,7 @@
                     />
                 </div>
 
-                <button class="btn btn-soft btn-primary">Reset Password</button>
+                <button class="btn btn-primary">Reset Password</button>
             </form>
         </div>
     </div>

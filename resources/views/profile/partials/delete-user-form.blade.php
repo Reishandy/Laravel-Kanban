@@ -13,7 +13,7 @@
         <p class="text-error text-sm mt-4">{{ $message }}</p>
     @enderror
 
-    <button class="btn btn-soft btn-error mt-4" onclick="delete_modal.showModal()">Delete Account</button>
+    <button class="btn btn-error mt-4" onclick="delete_modal.showModal()">Delete Account</button>
 
     <dialog id="delete_modal" class="modal modal-bottom sm:modal-middle">
         <div class="modal-box">
@@ -40,9 +40,9 @@
                     />
                 </div>
                 <div class="">
-                    <button class="btn btn-soft" form="dialog">Cancel</button>
+                    <button class="btn" form="dialog">Cancel</button>
 
-                    <button class="btn btn-soft btn-error">Delete Account</button>
+                    <button class="btn btn-error">Delete Account</button>
                 </div>
             </form>
 

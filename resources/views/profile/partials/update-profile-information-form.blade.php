@@ -66,7 +66,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <button class="btn btn-soft btn-primary">Save</button>
+            <button class="btn btn-primary">Save</button>
 
             @if (session('status') === 'profile-updated')
                 <p

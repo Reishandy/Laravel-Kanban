@@ -4,13 +4,10 @@
     </div>
     <div class="flex-none flex justify-between items-center w-full sm:justify-end sm:w-auto">
         {{-- theme selector --}}
-        <ul class="menu menu-horizontal px-2">
-            <li>
-                <details>
-                    <summary>Theme</summary>
-                    <ul class="bg-base-100 rounded-t-none p-2 max-h-64 overflow-y-auto">
-
-                        <x-theme-category title="Dark" :themes="[
+        <div class="dropdown dropdown-end dropdown-hover">
+            <div id="theme" tabindex="0" role="button" class="btn btn-ghost m-1">Theme</div>
+            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                <x-theme-category title="Dark" :themes="[
                                 ['label' => 'Dark', 'value' => 'dark'],
                                 ['label' => 'Synthwave', 'value' => 'synthwave'],
                                 ['label' => 'Coffee', 'value' => 'coffee'],
@@ -19,7 +16,7 @@
                                 ['label' => 'Aqua', 'value' => 'aqua'],
                             ]"/>
 
-                        <x-theme-category title="Light" :themes="[
+                <x-theme-category title="Light" :themes="[
                                 ['label' => 'Light', 'value' => 'light'],
                                 ['label' => 'Retro', 'value' => 'retro'],
                                 ['label' => 'Cyberpunk', 'value' => 'cyberpunk'],
@@ -30,35 +27,29 @@
                                 ['label' => 'Lemonade', 'value' => 'lemonade'],
                                 ['label' => 'Caramellatte', 'value' => 'caramellatte'],
                             ]"/>
-                    </ul>
-                </details>
-            </li>
-        </ul>
+            </ul>
+        </div>
 
-        <ul class="menu menu-horizontal px-2">
-            <li>
-                <details>
-                    <summary>{{ Auth::user()->name }}</summary>
-                    <ul class="bg-base-100 rounded-t-none p-2">
-                        <li><a href="{{ route('profile.edit') }}">Profile</a></li>
-                        <li>
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
+        <div class="dropdown dropdown-end dropdown-hover">
+            <div tabindex="0" role="button" class="btn btn-ghost m-1">{{ Auth::user()->name }}</div>
+            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                <li><a href="{{ route('profile.edit') }}">Profile</a></li>
+                <li>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
 
-                                <button class="text-error hover:cursor-pointer">Log Out</button>
-                            </form>
-                        </li>
-                    </ul>
-                </details>
-            </li>
-        </ul>
+                        <button class="text-error hover:cursor-pointer">Log Out</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Get the summary element
-        const themeSummary = document.querySelector('li details summary');
+        const themeSummary = document.getElementById('theme');
 
         // Function to update summary text based on selected theme
         function updateThemeSummary() {

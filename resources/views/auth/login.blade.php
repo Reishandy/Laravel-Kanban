@@ -21,6 +21,7 @@
                             name="email"
                             label="Email"
                             placeholder="Valid email address"
+                            :value="old('email')"
                             required
                             helper="Enter valid email address"
                         />

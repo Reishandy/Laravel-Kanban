@@ -40,7 +40,7 @@
                 <details>
                     <summary>{{ Auth::user()->name }}</summary>
                     <ul class="bg-base-100 rounded-t-none p-2">
-                        <li><a href="{{ route('profile') }}">Profile</a></li>
+                        <li><a href="{{ route('profile.edit') }}">Profile</a></li>
                         <li>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf

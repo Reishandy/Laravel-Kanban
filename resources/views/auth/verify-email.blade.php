@@ -4,7 +4,7 @@
             <p class="text-justify">Please verify your email address. No email? Please check spam or click below to resend.</p>
 
             @if (session('status') == 'verification-link-sent')
-                <div class="mb-4 font-medium text-sm text-green-600">
+                <div class="mb-4 font-medium text-sm text-success">
                     A new verification link has been sent to the email address you provided during registration.
                 </div>
             @endif

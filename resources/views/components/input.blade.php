@@ -28,7 +28,6 @@
     @endif
 
     @error($name)
-        {{-- TODO: check if it is working --}}
         <p class="text-error text-sm mt-1">{{ $message }}</p>
     @enderror
 </div>

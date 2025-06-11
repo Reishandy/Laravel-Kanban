@@ -16,6 +16,7 @@
                             name="name"
                             label="Username"
                             placeholder="Username"
+                            :value="old('name')"
                             required
                             minlength="3"
                             maxlength="30"
@@ -31,6 +32,7 @@
                             name="email"
                             label="Email"
                             placeholder="Valid email address"
+                            :value="old('email')"
                             required
                             helper="Enter valid email address"
                         />

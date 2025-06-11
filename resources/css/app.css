@@ -10,4 +10,6 @@
     'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
-@plugin "daisyui";
+@plugin "daisyui" {
+    themes: dark --default, light, retro, cyberpunk, synthwave, coffee, pastel, cupcake, aqua, lofi, wireframe, dracula, lemonade, caramellatte, abyss;
+}

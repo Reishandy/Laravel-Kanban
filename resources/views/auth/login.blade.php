@@ -1,4 +1,4 @@
-<x-layout.app>
+<x-layout.guest>
     <div class="card w-96 bg-base-200 shadow-xl rounded-t-xl rounded-b-none">
         <div class="card-body flex justify-center">
             <x-title type="login"/>
@@ -47,4 +47,4 @@
         {{-- Login instead --}}
         <x-instead type="login"/>
     </div>
-</x-layout.app>
+</x-layout.guest>

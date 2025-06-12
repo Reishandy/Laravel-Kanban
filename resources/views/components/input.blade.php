@@ -5,7 +5,7 @@
         'placeholder' => '',
         'value' => null,
         'helper' => null,
-    ])
+])
 
 <div class="mb-4">
     @if($label)

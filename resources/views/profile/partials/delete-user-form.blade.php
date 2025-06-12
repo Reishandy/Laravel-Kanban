@@ -17,7 +17,7 @@
 
     <dialog id="delete_modal" class="modal modal-bottom sm:modal-middle">
         <div class="modal-box">
-            <h2 class="font-bokd text-base-content">
+            <h2 class="font-bold text-base-content">
                 Are you sure you want to delete your account?
             </h2>
 

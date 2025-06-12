@@ -15,11 +15,8 @@
                 :new="true"
                 code="1234-ABCD"
                 title="Some kanban title"
-                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit amet pellentesque tortor.
-                            Morbi bibendum, dolor quis congue varius, justo lorem elementum ligula, vel consequat urna
-                            augue ut dolor. Pellentesque lobortis"
-                edit_on_click="edit_modal.showModal()"
-                href="#"
+                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit amet pellentesque tortor."
+                link="#"
             />
 
             @for($i = 1; $i <= 10; $i++)
@@ -27,11 +24,8 @@
                     :new="false"
                     code="3234-ABCD{{ $i }}"
                     title="Some kanban title"
-                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit amet pellentesque tortor.
-                            Morbi bibendum, dolor quis congue varius, justo lorem elementum ligula, vel consequat urna
-                            augue ut dolor. Pellentesque lobortis"
-                    edit_on_click="edit_modal.showModal()"
-                    href="#"
+                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit amet pellentesque tortor"
+                    link="#"
                 />
             @endfor
         </div>
@@ -47,7 +41,7 @@
             <div class="my-4">
                 <x-input
                     type="text"
-                    name="code"
+                    name="join-code"
                     label="Code"
                     placeholder="XXXX-XXXX"
                     required
@@ -71,7 +65,7 @@
             <div class="my-4 space-y-4">
                 <x-input
                     type="text"
-                    name="title"
+                    name="create-title"
                     label="Title"
                     placeholder="My Awesome Project"
                     required
@@ -80,7 +74,7 @@
 
                 <x-input
                     type="text"
-                    name="description"
+                    name="create-description"
                     label="Description (Optional)"
                     placeholder="This project is about..."
                     helper="Provide details about what this project is for"
@@ -95,15 +89,22 @@
     </x-modal>
 
     <x-modal modal_id="edit_modal" title="Edit project" description="Update your kanban project details.">
-        <form method="POST" action="" id="edit-form">
+        <form method="POST" action="{{-- TODO --}}" id="edit-form">
             @csrf
-            @method('PUT')
+            @method('PATCH')
 
             <div class="my-4 space-y-4">
                 <x-input
                     type="text"
-                    name="title"
-                    id="edit-title"
+                    name="edit-code"
+                    label="Code"
+                    value=""
+                    disabled
+                />
+
+                <x-input
+                    type="text"
+                    name="edit-title"
                     label="Title"
                     placeholder="My Awesome Project"
                     value=""
@@ -113,8 +114,7 @@
 
                 <x-input
                     type="text"
-                    name="description"
-                    id="edit-description"
+                    name="edit-description"
                     label="Description"
                     value=""
                     placeholder="This project is about..."
@@ -131,10 +131,5 @@
         </form>
     </x-modal>
 
-
-    {{-- TODO:
-            - pagination
-            - edit modal
-            - Partials modal for create and join
-    --}}
+    {{-- TODO: pagination --}}
 </x-layout.app>

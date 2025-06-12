@@ -3,12 +3,11 @@
     'code',
     'title',
     'description',
-    'edit_on_click',
-    'href',
+    'link',
 ])
 
 <div class="card bg-base-100 shadow-xl rounded-xl hover:bg-neutral/40 transition-colors duration-300">
-    <a href="{{ $href }}" class="hover:cursor-default h-full">
+    <a href="{{ $link }}" class="hover:cursor-default h-full">
         <div class="card-body flex flex-col justify-between h-full">
             <div class="flex justify-between flex-col items-start gap-2">
                 <div class="flex items-center gap-2 justify-between w-full">
@@ -21,7 +20,7 @@
                         <span id="kanban-{{ $code }}">{{ $code }}</span>
                     </div>
                     <x-gmdi-edit class="w-5 mb-1 cursor-pointer"
-                                 onClick="{{ $edit_on_click }}"/>
+                                 onClick="openEditModal('{{ $code }}', '{{ $title }}', '{{ $description }}')"/>
                 </div>
 
                 @if($new)

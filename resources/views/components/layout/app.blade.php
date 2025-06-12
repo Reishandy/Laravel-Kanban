@@ -68,6 +68,19 @@
             console.error('Failed to copy: ', err);
         });
     }
+
+    function openEditModal(code, title, description) {
+        // Set form values
+        document.getElementById('edit-code').value = code;
+        document.getElementById('edit-title').value = title;
+        document.getElementById('edit-description').value = description;
+
+        // Update action URL if needed
+        document.getElementById('edit-form').action = `/project/${code}`;
+
+        // Show modal
+        edit_modal.showModal();
+    }
 </script>
 
 <body class="flex flex-col items-center min-h-screen bg-base-300">

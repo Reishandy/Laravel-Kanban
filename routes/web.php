@@ -7,9 +7,11 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+// TODO: Refactor with controller
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('kanban.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
+Route::view('/kanban', 'kanban.show')->name('kanban');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

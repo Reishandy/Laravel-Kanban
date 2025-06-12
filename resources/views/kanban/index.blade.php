@@ -1,7 +1,9 @@
 <x-layout.app>
     <x-navbar/>
 
-    <x-header title="Dashboard" description="Your projects.">
+    <x-header
+        title="Dashboard"
+        description="Your projects.">
         <div class="flex flex-row gap-4">
             <button class="btn btn-soft btn-primary w-30" onClick="join_modal.showModal()">Join</button>
             <button class="btn btn-soft w-30" onClick="create_modal.showModal()">Create</button>

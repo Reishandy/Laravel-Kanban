@@ -50,5 +50,8 @@
                 <form id="dialog" method="dialog"></form>
             </div>
         </div>
+        <form method="dialog" class="modal-backdrop">
+            <button class="hover:cursor-default">close</button>
+        </form>
     </dialog>
 </section>

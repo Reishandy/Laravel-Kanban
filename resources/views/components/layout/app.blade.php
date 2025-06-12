@@ -49,7 +49,7 @@
     });
 </script>
 
-<body class="min-h-screen bg-base-300">
+<body class="flex flex-col items-center min-h-screen bg-base-300">
 
 {{ $slot }}
 

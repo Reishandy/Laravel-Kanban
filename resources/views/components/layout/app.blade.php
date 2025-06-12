@@ -18,7 +18,7 @@
         document.documentElement.setAttribute('data-theme', getTheme());
     </script>
 
-    <link rel="icon" href="https://raw.githubusercontent.com/Reishandy/Reishandy/refs/heads/main/repo/logo_transparent_white.png" type="image/svg+xml">
+    <link rel="icon" href="https://raw.githubusercontent.com/Reishandy/Reishandy/refs/heads/main/repo/logo_ori.webp" type="image/svg+xml">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

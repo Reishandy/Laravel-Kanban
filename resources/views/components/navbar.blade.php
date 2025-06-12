@@ -5,7 +5,7 @@
     <div class="flex-none flex justify-between items-center w-full sm:justify-end sm:w-auto">
         {{-- theme selector --}}
         <div class="dropdown dropdown-start sm:dropdown-end dropdown-hover">
-            <div id="theme" tabindex="0" role="button" class="btn btn-ghost m-1">Theme</div>
+            <div tabindex="0" role="button" class="btn btn-ghost m-1">Theme</div>
             <ul tabindex="0" class="dropdown-content menu bg-base-200 rounded-box z-1 w-52 p-2 shadow-sm">
                 <x-theme-category title="Dark" :themes="[
                                 ['label' => 'Dark', 'value' => 'dark'],
@@ -45,35 +45,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Get the summary element
-        const themeSummary = document.getElementById('theme');
-
-        // Function to update summary text based on selected theme
-        function updateThemeSummary() {
-            const currentTheme = getTheme();
-            const selectedRadio = document.querySelector(`input[name="theme-dropdown"][value="${currentTheme}"]`);
-
-            if (selectedRadio) {
-                // Use the aria-label attribute to get the theme name
-                themeSummary.textContent = 'Theme: ' + selectedRadio.getAttribute('aria-label');
-            }
-        }
-
-        // Update on page load
-        updateThemeSummary();
-
-        // Add event listeners to all theme options to update the summary when changed
-        const themeRadios = document.querySelectorAll('input[name="theme-dropdown"]');
-        themeRadios.forEach(radio => {
-            radio.addEventListener('change', function () {
-                if (this.checked) {
-                    // Update summary text
-                    themeSummary.textContent = 'Theme: ' + this.getAttribute('aria-label');
-                }
-            });
-        });
-    });
-</script>

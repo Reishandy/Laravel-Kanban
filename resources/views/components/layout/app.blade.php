@@ -47,40 +47,6 @@
             });
         });
     });
-
-    function copyToClipboard(elementId, tooltipId) {
-        const text = document.getElementById(elementId).textContent.trim();
-        const tooltipElement = document.getElementById(tooltipId);
-
-        navigator.clipboard.writeText(text).then(() => {
-            // Show the tooltip
-            tooltipElement.classList.add('tooltip-open');
-            tooltipElement.classList.add('tooltip');
-
-            // Hide the tooltip after 1 second
-            setTimeout(() => {
-                tooltipElement.classList.remove('tooltip-open');
-                tooltipElement.classList.remove('tooltip');
-            }, 1000);
-
-            console.log('Copied to clipboard!');
-        }).catch(err => {
-            console.error('Failed to copy: ', err);
-        });
-    }
-
-    function openEditModal(code, title, description) {
-        // Set form values
-        document.getElementById('edit-code').value = code;
-        document.getElementById('edit-title').value = title;
-        document.getElementById('edit-description').value = description;
-
-        // Update action URL if needed
-        document.getElementById('edit-form').action = `/project/${code}`;
-
-        // Show modal
-        edit_modal.showModal();
-    }
 </script>
 
 <body class="flex flex-col items-center min-h-screen bg-base-300">

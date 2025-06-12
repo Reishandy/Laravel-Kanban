@@ -89,7 +89,7 @@
     </x-modal>
 
     <x-modal modal_id="edit_modal" title="Edit project" description="Update your kanban project details.">
-        <form method="POST" action="{{-- TODO --}}" id="edit-form">
+        <form method="POST" action="{{-- check JS --}}" id="edit-form">
             @csrf
             @method('PATCH')
 
@@ -126,10 +126,54 @@
 
             <div class="flex items-center gap-2">
                 <button class="btn btn-soft">Update</button>
+                <button class="btn btn-soft btn-error" form="delete-form">Delete</button>
                 <button class="btn btn-ghost" form="edit_modal_dialog">Cancel</button>
             </div>
+        </form>
+
+        <form method="POST" action="{{-- check JS --}}" id="delete-form">
+            @csrf
+            @method('DELETE')
+
         </form>
     </x-modal>
 
     {{-- TODO: pagination --}}
+
+    <script>
+        function copyToClipboard(elementId, tooltipId) {
+            const text = document.getElementById(elementId).textContent.trim();
+            const tooltipElement = document.getElementById(tooltipId);
+
+            navigator.clipboard.writeText(text).then(() => {
+                // Show the tooltip
+                tooltipElement.classList.add('tooltip-open');
+                tooltipElement.classList.add('tooltip');
+
+                // Hide the tooltip after 1 second
+                setTimeout(() => {
+                    tooltipElement.classList.remove('tooltip-open');
+                    tooltipElement.classList.remove('tooltip');
+                }, 1000);
+
+                console.log('Copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+
+        function openEditModal(code, title, description) {
+            // Set form values
+            document.getElementById('edit-code').value = code;
+            document.getElementById('edit-title').value = title;
+            document.getElementById('edit-description').value = description;
+
+            // Update action URL
+            document.getElementById('edit-form').action = `/project/${code}`;
+            document.getElementById('delete-form').action = `/project/${code}`;
+
+            // Show modal
+            edit_modal.showModal();
+        }
+    </script>
 </x-layout.app>

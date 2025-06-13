@@ -57,4 +57,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(Kanban::class, 'kanban_user')->withTimestamps();
     }
+
+    public function tasks(): BelongsToMany
+    {
+        return $this->belongsToMany(Task::class, 'task_user')->withTimestamps();
+    }
 }

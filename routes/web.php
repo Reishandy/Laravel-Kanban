@@ -27,9 +27,7 @@ Route::controller(KanbanController::class)->group(function () {
     Route::delete('/kanban/{kanban:code}', 'destroy')
         ->middleware(['auth', 'verified'])
         ->can('delete', 'kanban');
-
 });
-Route::view('/kanban', 'kanban.show')->name('kanban');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

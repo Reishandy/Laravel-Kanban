@@ -11,6 +11,12 @@
     </x-header>
 
     <div class="sm:rounded-xl bg-base-200 sm:my-10 w-full sm:w-xl md:w-3xl lg:w-5xl xl:w-7xl">
+        @if(session('status') === 'deleted')
+            <div class="flex items-center justify-center">
+                <div class="rounded-lg badge badge-error mt-6 mx-6 w-full">Kanban Deleted</div>
+            </div>
+        @endif
+
         <div class="m-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             @foreach($kanbans as $kanban)
                 <x-kanban-card

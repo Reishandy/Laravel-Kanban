@@ -94,7 +94,7 @@ class KanbanController extends Controller
     public function show(Kanban $kanban): View
     {
         return view('kanban.show', [
-            'kanban' => Kanban::with('tasks.users')->where('code', $kanban->code)->firstOrFail()
+            'kanban' => $kanban->load(['members', 'tasks.users'])
         ]);
     }
 

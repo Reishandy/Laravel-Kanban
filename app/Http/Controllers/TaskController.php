@@ -13,10 +13,10 @@ class TaskController extends Controller
     /**
      *  Move task to a stage.
      */
-    public function move(Request $request, Task $task)
+    public function move(Request $request, Kanban $kanban, Task $task)
     {
         dd($request->all());
-        // TODO
+        // TODO: redirect to stage tab
     }
 
     /**
@@ -34,7 +34,7 @@ class TaskController extends Controller
     public function update(UpdateTaskRequest $request, Kanban $kanban, Task $task)
     {
         dd($request->all());
-        //
+        // Handle assigned to
     }
 
     /**

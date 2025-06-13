@@ -51,8 +51,7 @@ Route::controller(TaskController::class)->group(function () {
 
     Route::patch('/kanban/{kanban:code}/task/{task}/move', 'move')
         ->middleware(['auth', 'verified'])
-        ->can('update', 'task')
-        ->name('task.move');
+        ->can('update', 'task');
 });
 
 Route::middleware('auth')->group(function () {

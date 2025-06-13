@@ -34,14 +34,8 @@
 
         <div class="flex items-center gap-2">
             <button class="btn btn-soft">Update</button>
-            <button class="btn btn-soft btn-error" form="delete-form">Delete</button>
+            <button type="button" class="btn btn-error" onclick="openDeleteConfirmationModal()">Delete</button>
             <button class="btn btn-ghost" form="edit_modal_dialog">Cancel</button>
         </div>
-    </form>
-
-    <form method="POST" action="{{-- check JS --}}" id="delete-form">
-        @csrf
-        @method('DELETE')
-
     </form>
 </x-modal>

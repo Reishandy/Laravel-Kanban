@@ -14,7 +14,8 @@ class StoreKanbanRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'create-title' => ['string', 'min:3', 'max:255'],
+            'create-description' => ['string', 'nullable'],
         ];
     }
 }

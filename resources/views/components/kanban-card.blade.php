@@ -12,13 +12,13 @@
                         <div id="copy-{{ $kanban->code }}" class="tooltip-left md:tooltip-right"
                              data-tip="Copied to clipboard!">
                             <x-gmdi-content-copy class="w-4 cursor-pointer hover:text-base-content"
-                                                 onclick="copyToClipboard('kanban-{{ $kanban->code }}', 'copy-{{ $kanban->code }}')"/>
+                                                 onclick="copyToClipboard('kanban-{{ $kanban->code }}', 'copy-{{ $kanban->code }}'); event.stopPropagation(); return false;"/>
                         </div>
                         <span id="kanban-{{ $kanban->code }}">{{ $kanban->code }}</span>
                     </div>
                     @can('update', $kanban)
                         <x-gmdi-edit class="w-5 mb-1 cursor-pointer"
-                                     onClick="openEditModal('{{ $kanban->code }}', '{{ $kanban->title }}', '{{ $kanban->description }}')"/>
+                                     onClick="openEditModal('{{ $kanban->code }}', '{{ $kanban->title }}', '{{ $kanban->description }}'); event.stopPropagation(); return false;"/>
                     @endcan
                 </div>
 

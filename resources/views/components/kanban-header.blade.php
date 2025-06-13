@@ -1,6 +1,6 @@
 @props([])
 
-{{-- TODO: add --}}
+{{-- TODO: Kanban details --}}
 
 <header class="sm:rounded-xl bg-base-200 p-6 w-full sm:mt-10 sm:w-xl md:w-3xl lg:w-5xl xl:w-7xl">
     <div class="flex flex-col justify-between items-start">
@@ -29,8 +29,9 @@
         </div>
 
         <div class="flex flex-wrap mt-4 gap-2 ">
+            {{-- TODO: Remove --}}
             <x-user-badge name="Reishandy" email="akbar@reishandy.my.id" :is_creator="true"/>
-            @for($i = 1; $i <= 10; $i++)
+            @for($i = 1; $i <= 3; $i++)
                 <x-user-badge name="Member {{ $i }}" email="email@example.com" :is_creator="false"/>
             @endfor
         </div>

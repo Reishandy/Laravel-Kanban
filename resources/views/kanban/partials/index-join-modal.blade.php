@@ -2,7 +2,7 @@
     modal_id="join_modal"
     title="Join a project"
     description="Input the project kanban code below.">
-    <form method="POST" action="{{-- TODO: Join --}}">
+    <form method="POST" action="{{ route('kanban.join') }}">
         @csrf
 
         <div class="my-4">

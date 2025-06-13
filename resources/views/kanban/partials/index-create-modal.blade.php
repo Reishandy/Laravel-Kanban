@@ -1,7 +1,7 @@
 <x-modal modal_id="create_modal"
          title="Create a new project"
          description="Fill in the details to create a new kanban project.">
-    <form method="POST" action="{{-- TODO: Store --}}">
+    <form method="POST" action="{{ route('kanban.store') }}">
         @csrf
 
         <div class="my-4 space-y-4">

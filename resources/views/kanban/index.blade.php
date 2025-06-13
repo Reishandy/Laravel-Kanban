@@ -12,24 +12,9 @@
 
     <div class="sm:rounded-xl bg-base-200 sm:my-10 w-full sm:w-xl md:w-3xl lg:w-5xl xl:w-7xl">
         <div class="m-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-
-            <x-kanban-card
-                :new="true"
-                code="1234-ABCD"
-                title="Some kanban title"
-                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit amet pellentesque tortor."
-                link="#"
-            />
-
-            @for($i = 1; $i <= 10; $i++)
-                <x-kanban-card
-                    :new="false"
-                    code="3234-ABCD{{ $i }}"
-                    title="Some kanban title"
-                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit amet pellentesque tortor"
-                    link="#"
-                />
-            @endfor
+            @foreach($kanbans as $kanban)
+                <x-kanban-card :new="false" {{-- TODO: Based on status --}} :kanban="$kanban"/>
+            @endforeach
         </div>
     </div>
 
@@ -68,8 +53,8 @@
             document.getElementById('edit-description').value = description;
 
             // Update action URL
-            document.getElementById('edit-form').action = `/project/${code}`;
-            document.getElementById('delete-form').action = `/project/${code}`;
+            document.getElementById('edit-form').action = `/kanban/${code}`;
+            document.getElementById('delete-form').action = `/kanban/${code}`;
 
             // Show modal
             edit_modal.showModal();

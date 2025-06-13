@@ -2,25 +2,30 @@
 
 {{-- TODO: Task --}}
 {{-- TODO: Border is based on priorty --}}
-<div class="card bg-base-100 border-1 border-info/50 shadow-xl rounded-xl p-6 hover:bg-neutral/40 hover:border-base-content transition-colors duration-300">
+<div
+    class="card bg-base-100 border-1 border-info/50 shadow-xl rounded-xl p-6 hover:bg-neutral/40 hover:border-base-content transition-colors duration-300">
     <div class="flex items-center justify-between mb-2">
         {{-- Low: Info, Medium: Secondary, High: Error --}}
         <div class="badge badge-info">Low</div>
         {{-- Default: Normal  H-7 <= Info, H-1 <= Secondary, H >= Error --}}
         <div class="badge badge-outline badge-error">01/01/1970</div>
-        <x-gmdi-edit class="w-5 mb-1 cursor-pointer hover:text-base-content/50 transition-colors duration-300" onClick="alert('TODO')"/>
+        <x-gmdi-edit class="w-5 mb-1 cursor-pointer hover:text-base-content/50 transition-colors duration-300"
+                     {{--                     onclick="editTask('{{ $task->id }}', '{{ $task->title }}', '{{ $task->description }}', '{{ $task->stage }}', '{{ $task->priority }}', '{{ $task->assigned_to }}', '{{ $task->deadline }}')"/>--}}
+                     onclick="editTask('1', 'Dummy', 'Dummy', 'completed', 'low', '[user1@example.com]', '1970-01-01')"/>
     </div>
 
-    {{--            <div class="rounded-lg badge badge-accent w-full">New</div>--}}
+    <div class="rounded-lg badge badge-accent w-full">New</div>
 
     <div class="flex flex-row items-center justify-between mt-2">
-        <div class="flex items-center cursor-pointer hover:text-base-content/50 transition-colors duration-300" onClick="alert('TODO')">
-            <x-gmdi-keyboard-double-arrow-left class="w-10 mb-0.5 mr-1" />
+        <div class="flex items-center cursor-pointer hover:text-base-content/50 transition-colors duration-300"
+             onClick="alert('TODO')">
+            <x-gmdi-keyboard-double-arrow-left class="w-10 mb-0.5 mr-1"/>
             Planned
         </div>
-        <div class="flex items-center cursor-pointer hover:text-base-content/50 transition-colors duration-300" onClick="alert('TODO')">
+        <div class="flex items-center cursor-pointer hover:text-base-content/50 transition-colors duration-300"
+             onClick="alert('TODO')">
             Completed
-            <x-gmdi-keyboard-double-arrow-right class="w-10 mb-0.5 ml-1" />
+            <x-gmdi-keyboard-double-arrow-right class="w-10 mb-0.5 ml-1"/>
         </div>
     </div>
 

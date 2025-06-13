@@ -7,7 +7,7 @@
         'helper' => null,
 ])
 
-<div class="mb-4 w-full">
+<fieldset class="mb-4 w-full">
     @if($label)
         <label for="{{ $name }}" class="block mb-2 text-sm font-medium">{{ $label }}</label>
     @endif
@@ -30,4 +30,4 @@
     @error($name)
         <p class="text-error text-sm mt-1">{{ $message }}</p>
     @enderror
-</div>
+</fieldset>

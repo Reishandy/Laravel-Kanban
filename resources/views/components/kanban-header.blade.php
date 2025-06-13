@@ -35,5 +35,7 @@
                 <x-user-badge name="Member {{ $i }}" email="email@example.com" :is_creator="false"/>
             @endfor
         </div>
+
+        <button class="btn btn-soft w-30 mt-4" onClick="create_modal.showModal()">Add</button>
     </div>
 </header>

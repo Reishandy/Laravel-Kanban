@@ -1,0 +1,65 @@
+<x-modal modal_id="edit_modal"
+         title="Edit task"
+         description="Update the details of this task.">
+    <form method="POST" action="{{-- Set via JS --}}" id="edit-task-form">
+        @csrf
+        @method('PATCH')
+
+        <div class="my-4 space-y-4">
+            <x-input
+                type="text"
+                name="edit-title"
+                label="Title"
+                placeholder="My Awesome Task"
+                required
+                helper="Enter a descriptive title for your task"
+            />
+
+            <x-textarea
+                name="edit-description"
+                label="Description (Optional)"
+                placeholder="This task is about..."
+            />
+
+            {{-- Stage --}}
+            <x-select name="edit-stage" label="Stage" required>
+                <option value="planned">Planned</option>
+                <option value="ongoing">Ongoing</option>
+                <option value="completed">Completed</option>
+            </x-select>
+
+            {{-- Priority --}}
+            <x-select name="edit-priority" label="Priority" required>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </x-select>
+
+            {{-- Assigned to TODO: update with real data--}}
+            <x-assigned/>
+
+            {{-- Deadline --}}
+            <x-input
+                type="date"
+                name="edit-deadline"
+                label="Deadline"
+                placeholder="Deadline of the task"
+                required
+                helper="Enter a deadline for your task"
+            />
+
+            <input type="hidden" name="task_id" id="edit-task-id">
+        </div>
+
+        <div class="flex items-center gap-2">
+            <button type="submit" class="btn btn-soft">Update</button>
+            <button type="button" class="btn btn-soft btn-error" id="delete-task-btn">Delete</button>
+            <button class="btn btn-ghost" form="edit_modal_dialog">Cancel</button>
+        </div>
+    </form>
+
+    <form method="POST" id="delete-task-form" style="display: none;">
+        @csrf
+        @method('DELETE')
+    </form>
+</x-modal>

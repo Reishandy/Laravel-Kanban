@@ -33,9 +33,9 @@
         </div>
     </div>
 
-    @include('kanban.partials.join-modal')
-    @include('kanban.partials.create-modal')
-    @include('kanban.partials.edit-modal')
+    @include('kanban.partials.index-join-modal')
+    @include('kanban.partials.index-create-modal')
+    @include('kanban.partials.index-edit-modal')
 
     {{-- TODO: pagination --}}
 

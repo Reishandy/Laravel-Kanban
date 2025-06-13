@@ -14,7 +14,7 @@ class StoreTaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            // Deadline must be not in the past
         ];
     }
 }

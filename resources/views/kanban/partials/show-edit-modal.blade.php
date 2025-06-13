@@ -36,7 +36,7 @@
             </x-select>
 
             {{-- Assigned to --}}
-            <x-assigned mode="edit" :users="$kanban->members->merge(collect([$kanban->user]))"/>
+            <x-assigned mode="edit" :users="$kanban->members->merge(collect([$kanban->user]))->sortBy('name')"/>
 
             {{-- Deadline --}}
             <x-input

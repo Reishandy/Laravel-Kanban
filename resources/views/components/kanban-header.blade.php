@@ -16,13 +16,13 @@
 
         <div class="mt-4 sm:flex sm:gap-4">
             <div>
-                Planned: 0 {{-- TODO: Kanban stats --}}
+                Planned: {{ $kanban->tasks->where('stage', 'planned')->count() }}
             </div>
             <div>
-                Ongoing: 0
+                Ongoing: {{ $kanban->tasks->where('stage', 'ongoing')->count() }}
             </div>
             <div>
-                Completed: 0
+                Completed: {{ $kanban->tasks->where('stage', 'completed')->count() }}
             </div>
         </div>
 

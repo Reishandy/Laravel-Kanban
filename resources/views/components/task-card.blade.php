@@ -52,7 +52,7 @@
     </div>
 
     <div class="flex flex-wrap justify-between gap-2 mt-4">
-        @foreach($task->users as $user)
+        @foreach($task->users->sortBy('name') as $user)
             <x-user-badge name="{{ $user->name }}" email="{{ $user->email }}" :is_assigned="$user->id === auth()->user()->id"/>
         @endforeach
     </div>

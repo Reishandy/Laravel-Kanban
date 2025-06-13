@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
+use App\Models\Kanban;
 use App\Models\Task;
 use Illuminate\Http\Request;
 
@@ -14,6 +15,7 @@ class TaskController extends Controller
      */
     public function move(Request $request, Task $task)
     {
+        dd($request->all());
         // TODO
     }
 
@@ -29,7 +31,7 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTaskRequest $request, Task $task)
+    public function update(UpdateTaskRequest $request, Kanban $kanban, Task $task)
     {
         dd($request->all());
         //
@@ -38,7 +40,7 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Task $task)
+    public function destroy(Kanban $kanban, Task $task)
     {
         dd($task->id);
         //

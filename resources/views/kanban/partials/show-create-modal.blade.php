@@ -35,7 +35,7 @@
             </x-select>
 
             {{-- Assigned to TODO: update with real data--}}
-            <x-assigned/>
+            <x-assigned mode="create"/>
 
             {{-- Deadline --}}
             <x-input

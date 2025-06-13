@@ -11,8 +11,9 @@
         <div class="badge badge-outline badge-error">01/01/1970</div>
         <x-gmdi-edit class="w-5 mb-1 cursor-pointer hover:text-base-content/50 transition-colors duration-300"
                      {{-- TODO: use Js::from()--}}
+                     {{-- TODO: use Handle multiple assigned--}}
                      {{--                     onclick="editTask('{{ $task->id }}', '{{ $task->title }}', '{{ $task->description }}', '{{ $task->stage }}', '{{ $task->priority }}', '{{ $task->assigned_to }}', '{{ $task->deadline }}')"/>--}}
-                     onclick="editTask('1', 'Dummy', 'Dummy', 'completed', 'low', '[user1@example.com]', '1970-01-01')"/>
+                     onclick="editTask('1', 'Dummy', 'Dummy', 'completed', 'low', {{ Js::from('user1@example.com') }}, '1970-01-01')"/>
     </div>
 
     <div class="rounded-lg badge badge-accent w-full">New</div>

@@ -13,6 +13,25 @@
 
     @include('kanban.partials.show-create-modal')
     @include('kanban.partials.show-edit-modal')
+    @include('kanban.partials.show-delete-confirmation-modal')
+
+    {{-- Check for create form validation errors TODO--}}
+    @if($errors->hasAny(['create-title', 'create-description']))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                create_modal.showModal();
+            });
+        </script>
+    @endif
+
+    {{-- Check for edit form validation errors --}}
+    @if($errors->hasAny(['edit-title', 'edit-description']))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                edit_modal.showModal();
+            });
+        </script>
+    @endif
 
     <script>
         function editTask(taskId, title, description, stage, priority, assignedTo, deadline) {
@@ -27,39 +46,27 @@
             // Set deadline
             document.querySelector('[name="edit-deadline"]').value = deadline;
 
-            // Handle assigned users (parse if it's a string representation of an array)
-            let assignedUsers;
+            // Handle assigned users
             try {
-                // Try to parse if it's a JSON string array
+                // Parse assignedTo if it's a string
+                let assignedUsers = assignedTo;
                 if (typeof assignedTo === 'string' &&
                     (assignedTo.startsWith('[') || assignedTo.startsWith('{'))) {
                     assignedUsers = JSON.parse(assignedTo);
-                } else {
-                    assignedUsers = assignedTo;
                 }
 
-                // Find assigned select/input element(s)
-                const assignedElement = document.querySelector('[name="edit-assigned"]');
-                if (assignedElement) {
-                    if (assignedElement.tagName === 'SELECT' && assignedElement.multiple) {
-                        // For multi-select dropdowns
-                        Array.from(assignedElement.options).forEach(option => {
-                            option.selected = Array.isArray(assignedUsers)
-                                ? assignedUsers.includes(option.value)
-                                : option.value === assignedUsers;
-                        });
-                    } else {
-                        // For single input
-                        assignedElement.value = Array.isArray(assignedUsers)
-                            ? assignedUsers.join(',')
-                            : assignedUsers;
-                    }
+                // Ensure assignedUsers is an array
+                if (!Array.isArray(assignedUsers)) {
+                    assignedUsers = assignedUsers ? [assignedUsers] : [];
                 }
 
-                // If there's a custom component with a setup function
-                if (window.setupAssignedUsers && typeof window.setupAssignedUsers === 'function') {
-                    window.setupAssignedUsers(assignedUsers);
-                }
+                // You might need to update your x-assigned component to use edit-assigned[] for the edit form
+                const checkboxes = document.querySelectorAll('input[name="edit-assigned[]"]');
+                checkboxes.forEach(checkbox => {
+                    // Check the box if the email is in assignedUsers
+                    checkbox.checked = assignedUsers.includes(checkbox.value);
+                });
+
             } catch (e) {
                 console.error("Error setting assigned users:", e);
             }
@@ -68,18 +75,23 @@
             document.getElementById('edit-task-id').value = taskId;
 
             // Update action URLs
-            document.getElementById('edit-task-form').action = `/tasks/${taskId}`;
-            document.getElementById('delete-task-form').action = `/tasks/${taskId}`;
+            document.getElementById('edit-task-form').action = `/task/${taskId}`;
 
             // Show modal
             edit_modal.showModal();
         }
 
-        // Handle delete button click
-        document.getElementById('delete-task-btn').addEventListener('click', function() {
-            if (confirm('Are you sure you want to delete this task?')) {
-                document.getElementById('delete-task-form').submit();
-            }
-        });
+        function openDeleteConfirmationModal() {
+            // Get data from edit form
+            const id = document.getElementById('edit-task-id').value;
+            document.getElementById('delete-task-title').textContent = document.getElementById('edit-title').value;
+
+            // Set the form action
+            document.getElementById('confirm-delete-form').action = `/task/${id}`;
+
+            // Close edit modal and open confirmation modal
+            edit_modal.close();
+            delete_confirmation_modal.showModal();
+        }
     </script>
 </x-layout.app>

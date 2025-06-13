@@ -36,7 +36,7 @@
             </x-select>
 
             {{-- Assigned to TODO: update with real data--}}
-            <x-assigned/>
+            <x-assigned mode="edit"/>
 
             {{-- Deadline --}}
             <x-input
@@ -53,13 +53,9 @@
 
         <div class="flex items-center gap-2">
             <button type="submit" class="btn btn-soft">Update</button>
-            <button type="button" class="btn btn-soft btn-error" id="delete-task-btn">Delete</button>
+            <button type="button" class="btn btn-error" onclick="openDeleteConfirmationModal()">Delete</button>
+
             <button class="btn btn-ghost" form="edit_modal_dialog">Cancel</button>
         </div>
-    </form>
-
-    <form method="POST" id="delete-task-form" style="display: none;">
-        @csrf
-        @method('DELETE')
     </form>
 </x-modal>

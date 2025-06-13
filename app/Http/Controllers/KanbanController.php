@@ -117,7 +117,7 @@ class KanbanController extends Controller
     {
         $kanban->delete();
 
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard')->with('status', 'deleted');
     }
 
     private function findKanbanPage($kanbanId): int

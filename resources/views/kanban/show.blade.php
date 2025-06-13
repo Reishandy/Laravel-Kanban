@@ -5,9 +5,9 @@
 
     <div class="sm:rounded-xl bg-base-200 sm:my-10 w-full sm:w-xl md:w-3xl lg:w-5xl xl:w-7xl">
         <div class="tabs tabs-border">
-            <x-stage name="Planned"/>
-            <x-stage name="Ongoing" :is_checked="true"/>
-            <x-stage name="Completed"/>
+            <x-stage name="Planned" :kanban="$kanban" />
+            <x-stage name="Ongoing" :is_checked="true" :kanban="$kanban" />
+            <x-stage name="Completed" :kanban="$kanban" />
         </div>
     </div>
 
@@ -34,7 +34,7 @@
     @endif
 
     <script>
-        function editTask(taskId, title, description, stage, priority, assignedTo, deadline) {
+        function editTask(kanbanCode, taskId, title, description, stage, priority, assignedTo, deadline) {
             // Set form values
             document.getElementById('edit-title').value = title;
             document.getElementById('edit-description').value = description;
@@ -75,7 +75,7 @@
             document.getElementById('edit-task-id').value = taskId;
 
             // Update action URLs
-            document.getElementById('edit-task-form').action = `/task/${taskId}`;
+            document.getElementById('edit-task-form').action = `/kanban/${kanban:code}/task/${taskId}`;
 
             // Show modal
             edit_modal.showModal();

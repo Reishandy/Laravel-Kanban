@@ -1,19 +1,32 @@
-@props([])
+@props([
+    'kanban',
+    'task',
+])
 
-{{-- TODO: Task --}}
 {{-- TODO: Border is based on stage --}}
 {{-- Planned: Info, Ongoing: Secondary, Completed: Success --}}
-<div class="card bg-base-100 border-1 border-info/50 shadow-xl rounded-xl p-6 hover:bg-neutral/40 hover:border-base-content transition-colors duration-300">
+@php
+    $borderColor = match($task->stage) {
+        'planned' => 'border-info',
+        'ongoing' => 'border-secondary',
+        'completed' => 'border-success',
+        default => 'border-base-content',
+    };
+
+    $priorityColor = match($task->priority) {
+        'low' => 'badge-info',
+        'medium' => 'badge-secondary',
+        'high' => 'badge-error',
+        default => 'badge-normal',
+    };
+@endphp
+<div class="card bg-base-100 border-1 {{ $borderColor }}/50 shadow-xl rounded-xl p-6 hover:bg-neutral/40 hover:border-base-content transition-colors duration-300">
     <div class="flex items-center justify-between mb-2">
         {{-- Low: Info, Medium: Secondary, High: Error --}}
-        <div class="badge badge-info">Low</div>
-        {{-- Default: Normal  H-7 <= Info, H-1 <= Secondary, H >= Error --}}
-        <div class="badge badge-outline badge-error">01/01/1970</div>
+        <div class="badge {{ $priorityColor }}">{{ $task->priority }}</div>
+        <div class="badge badge-outline">{{ $task->deadline }}</div>
         <x-gmdi-edit class="w-5 mb-1 cursor-pointer hover:text-base-content/50 transition-colors duration-300"
-                     {{-- TODO: use Js::from()--}}
-                     {{-- TODO: use Handle multiple assigned--}}
-                     {{--                     onclick="editTask('{{ $task->id }}', '{{ $task->title }}', '{{ $task->description }}', '{{ $task->stage }}', '{{ $task->priority }}', '{{ $task->assigned_to }}', '{{ $task->deadline }}')"/>--}}
-                     onclick="editTask('1', 'Dummy', 'Dummy', 'completed', 'low', {{ Js::from('user1@example.com') }}, '1970-01-01')"/>
+                     onclick="editTask({{ Js::from($kanban->code) }}, {{ Js::from($task->id) }}, {{ Js::from($task->title) }}, {{ Js::from($task->description) }}, {{ Js::from($task->stage) }}, {{ Js::from($task->priority) }}, {{ Js::from($task->assigned_to) }}, {{ Js::from($task->deadline) }})"/>
     </div>
 
     <div class="rounded-lg badge badge-accent w-full">New</div>
@@ -32,16 +45,15 @@
     </div>
 
     <div class="pt-24">
-        <h2 class="font-bold text-3xl mb-2">Title task</h2>
+        <h2 class="font-bold text-3xl mb-2">{{ $task->title }}</h2>
         <p class="text-base-content/50 text-sm text-justify mb-2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            {{ $task->description ?: '' }}
         </p>
     </div>
 
     <div class="flex flex-wrap justify-between gap-2 mt-4">
-        <x-user-badge name="Assigned User" email="email@example.com" :is_assigned="true"/>
-        <x-user-badge name="Assigned User" email="email@example.com"/>
-        <x-user-badge name="Assigned User" email="email@example.com"/>
-        <x-user-badge name="Assigned User" email="email@example.com"/>
+        @foreach($task->users as $user)
+            <x-user-badge name="{{ $user->name }}" email="{{ $user->email }}" :is_assigned="$user === auth()->user()"/>
+        @endforeach
     </div>
 </div>

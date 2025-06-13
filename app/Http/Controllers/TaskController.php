@@ -5,23 +5,16 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
+use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     *  Move task to a stage.
      */
-    public function index()
+    public function move(Request $request, Task $task)
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        // TODO
     }
 
     /**
@@ -29,22 +22,7 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Task $task)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Task $task)
-    {
+        dd($request->all());
         //
     }
 
@@ -53,6 +31,7 @@ class TaskController extends Controller
      */
     public function update(UpdateTaskRequest $request, Task $task)
     {
+        dd($request->all());
         //
     }
 
@@ -61,6 +40,7 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
+        dd($request->all());
         //
     }
 }

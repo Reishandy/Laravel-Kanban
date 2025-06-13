@@ -1,7 +1,7 @@
 <x-modal modal_id="create_modal"
          title="Create a new task"
          description="Fill in the details to create a new task.">
-    <form method="POST" action="{{-- TODO: Store Task --}}">
+    <form method="POST" action="/kanban/{{ $kanban->code }}/task">
         @csrf
 
         <div class="my-4 space-y-4">

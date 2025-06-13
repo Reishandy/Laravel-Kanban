@@ -9,7 +9,7 @@
         <div class="card-body flex flex-col justify-between h-full">
             <div class="flex justify-between flex-col items-start gap-2">
                 <div class="flex items-center gap-2 justify-between w-full">
-                    <div class="rounded-lg bg-base-200 px-3 py-1 flex gap-2 items-center">
+                    <div class="rounded-lg {{ $kanban->user->id === auth()->user()->id? 'bg-base-200' : 'bg-accent' }} px-3 py-1 flex gap-2 items-center">
                         <div id="copy-{{ $kanban->code }}" class="tooltip-left md:tooltip-right"
                              data-tip="Copied to clipboard!">
                             <x-gmdi-content-copy class="w-4 cursor-pointer hover:text-base-content"

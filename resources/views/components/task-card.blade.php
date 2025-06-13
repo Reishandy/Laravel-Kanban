@@ -10,6 +10,7 @@
         {{-- Default: Normal  H-7 <= Info, H-1 <= Secondary, H >= Error --}}
         <div class="badge badge-outline badge-error">01/01/1970</div>
         <x-gmdi-edit class="w-5 mb-1 cursor-pointer hover:text-base-content/50 transition-colors duration-300"
+                     {{-- TODO: use Js::from()--}}
                      {{--                     onclick="editTask('{{ $task->id }}', '{{ $task->title }}', '{{ $task->description }}', '{{ $task->stage }}', '{{ $task->priority }}', '{{ $task->assigned_to }}', '{{ $task->deadline }}')"/>--}}
                      onclick="editTask('1', 'Dummy', 'Dummy', 'completed', 'low', '[user1@example.com]', '1970-01-01')"/>
     </div>

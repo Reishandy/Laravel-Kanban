@@ -4,13 +4,7 @@
         @method('PATCH')
 
         <div class="my-4 space-y-4">
-            <x-input
-                type="text"
-                name="edit-code"
-                label="Code"
-                value=""
-                disabled
-            />
+            <input type="hidden" id="edit-kanban-code"/>
 
             <x-input
                 type="text"
@@ -30,7 +24,7 @@
             />
 
             <input type="hidden" name="kanban_id" id="edit-kanban-id">
-        </div>
+        </input>
 
         <div class="flex items-center gap-2">
             <button class="btn btn-soft">Update</button>

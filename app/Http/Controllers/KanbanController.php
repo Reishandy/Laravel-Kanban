@@ -12,6 +12,8 @@ use Illuminate\View\View;
 
 class KanbanController extends Controller
 {
+    private $pageSize = 10;
+
     /**
      * Join a user to kanban.
      */
@@ -65,7 +67,7 @@ class KanbanController extends Controller
                 ->orderByRaw('CASE WHEN kanban_user.created_at IS NULL OR kanbans.created_at > kanban_user.created_at THEN kanbans.created_at ELSE kanban_user.created_at END DESC')
                 ->select('kanbans.*')
                 ->distinct()
-                ->paginate(10),
+                ->paginate($this->pageSize),
         ]);
     }
 
@@ -85,28 +87,65 @@ class KanbanController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Kanban $kanban)
+    public function show(Kanban $kanban): View
     {
-        dd($kanban);
-        //
+        return view('kanban.show', [
+            'kanban' => $kanban->load(['user', 'members'])
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateKanbanRequest $request, Kanban $kanban)
+    public function update(UpdateKanbanRequest $request, Kanban $kanban): RedirectResponse
     {
-        dump($kanban);
-        dd($request->all());
-        //
+        $kanban->update([
+            'title' => $request['edit-title'],
+            'description' => $request['edit-description'],
+        ]);
+
+        $page = $this->findKanbanPage($kanban->id);
+
+        return redirect()->route('dashboard', ['page' => $page])
+            ->with('status', 'updated-' . $kanban->code);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Kanban $kanban)
+    public function destroy(Kanban $kanban): RedirectResponse
     {
-        dd($kanban);
-        //
+        $kanban->delete();
+
+        return redirect()->route('dashboard');
+    }
+
+    private function findKanbanPage($kanbanId): int
+    {
+        $user = Auth::user();
+
+        $kanbansQuery = Kanban::with('user')
+            ->where(function ($query) use ($user) {
+                $query->where('kanbans.user_id', $user->id)
+                    ->orWhereHas('members', function ($subQuery) use ($user) {
+                        $subQuery->where('users.id', $user->id);
+                    });
+            })
+            ->leftJoin('kanban_user', function ($join) use ($user) {
+                $join->on('kanbans.id', '=', 'kanban_user.kanban_id')
+                    ->where('kanban_user.user_id', '=', $user->id);
+            })
+            ->orderByRaw('CASE WHEN kanban_user.created_at IS NULL OR kanbans.created_at > kanban_user.created_at THEN kanbans.created_at ELSE kanban_user.created_at END DESC')
+            ->select('kanbans.*')
+            ->distinct();
+
+        // Get all kanban IDs in their sorted order
+        $kanbanIds = $kanbansQuery->pluck('id')->toArray();
+
+        // Find position of the kanban
+        $position = array_search($kanbanId, $kanbanIds);
+
+        // Calculate page number (1-based)
+        return floor($position / $this->pageSize) + 1;
     }
 }

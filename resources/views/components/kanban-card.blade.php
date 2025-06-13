@@ -1,5 +1,6 @@
 @props([
-    'new' => false,
+    'is_new' => false,
+    'is_updated' => false,
     'kanban',
 ])
 
@@ -18,12 +19,15 @@
                     </div>
                     @can('update', $kanban)
                         <x-gmdi-edit class="w-5 mb-1 cursor-pointer"
-                                     onClick="openEditModal('{{ $kanban->code }}', '{{ $kanban->title }}', '{{ $kanban->description }}'); event.stopPropagation(); return false;"/>
+                                     onClick="openEditModal({{ Js::from($kanban->code) }}, {{ Js::from($kanban->title) }}, {{ Js::from($kanban->description) }}); event.stopPropagation(); return false;"/>
                     @endcan
                 </div>
 
-                @if($new)
+                @if($is_new)
                     <div class="rounded-lg badge badge-accent w-full">New</div>
+                @endif
+                @if($is_updated)
+                    <div class="rounded-lg badge badge-info w-full">Updated</div>
                 @endif
             </div>
 

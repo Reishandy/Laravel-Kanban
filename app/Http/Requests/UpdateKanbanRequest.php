@@ -14,7 +14,8 @@ class UpdateKanbanRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'edit-title' => ['string', 'min:3', 'max:255'],
+            'edit-description' => ['string', 'nullable'],
         ];
     }
 }

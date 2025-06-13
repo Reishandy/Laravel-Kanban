@@ -33,7 +33,7 @@
                 textarea.style.overflowY = textarea.scrollHeight > maxHeight ? 'auto' : 'hidden';
             };
 
-            // Set initial height
+            // Initial resize
             resizeTextarea();
 
             // Add input event listener

@@ -13,7 +13,10 @@
     <div class="sm:rounded-xl bg-base-200 sm:my-10 w-full sm:w-xl md:w-3xl lg:w-5xl xl:w-7xl">
         <div class="m-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             @foreach($kanbans as $kanban)
-                <x-kanban-card :new="session('status') === 'new-' . $kanban->code " :kanban="$kanban"/>
+                <x-kanban-card
+                    :is_new="session('status') === 'new-' . $kanban->code "
+                    :is_updated="session('status') === 'updated-' . $kanban->code "
+                    :kanban="$kanban"/>
             @endforeach
         </div>
 
@@ -80,7 +83,7 @@
 
         function openEditModal(code, title, description) {
             // Set form values
-            document.getElementById('edit-code').value = code;
+            document.getElementById('edit-kanban-code').value = code;
             document.getElementById('edit-title').value = title;
             document.getElementById('edit-description').value = description;
 
@@ -93,7 +96,7 @@
 
         function openDeleteConfirmationModal() {
             // Get data from edit form
-            const code = document.getElementById('edit-code').value;
+            const code = document.getElementById('edit-kanban-code').value;
             document.getElementById('delete-kanban-title').textContent = document.getElementById('edit-title').value;
 
             // Set the form action

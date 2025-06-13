@@ -32,12 +32,16 @@ class KanbanController extends Controller
                 ->withErrors(['join-code' => 'Kanban with this code does not exist.']);
         }
 
-        // Check if already joined
+        // Check if already joined or owner
         if ($kanban->members->contains(Auth::user())) {
             return redirect()->back()
                 ->withInput()
                 ->withErrors(['join-code' => 'You are already a member of this kanban.']);
-        };
+        } elseif ($kanban->user == Auth::user()) {
+            return redirect()->back()
+                ->withInput()
+                ->withErrors(['join-code' => 'You cannot join your own kanban.']);
+        }
 
         // Add to kanban
         $kanban->members()->attach(Auth::id());

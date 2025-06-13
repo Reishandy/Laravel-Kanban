@@ -94,7 +94,7 @@ class KanbanController extends Controller
     public function show(Kanban $kanban): View
     {
         return view('kanban.show', [
-            'kanban' => $kanban->load(['user', 'members'])
+            'kanban' => $kanban->load(['user', 'members']) // TODO: eager load tasks
         ]);
     }
 

@@ -1,9 +1,9 @@
 @props([])
 
 {{-- TODO: Task --}}
-{{-- TODO: Border is based on priorty --}}
-<div
-    class="card bg-base-100 border-1 border-info/50 shadow-xl rounded-xl p-6 hover:bg-neutral/40 hover:border-base-content transition-colors duration-300">
+{{-- TODO: Border is based on stage --}}
+{{-- Planned: Info, Ongoing: Secondary, Completed: Success --}}
+<div class="card bg-base-100 border-1 border-info/50 shadow-xl rounded-xl p-6 hover:bg-neutral/40 hover:border-base-content transition-colors duration-300">
     <div class="flex items-center justify-between mb-2">
         {{-- Low: Info, Medium: Secondary, High: Error --}}
         <div class="badge badge-info">Low</div>
@@ -20,7 +20,7 @@
 
     <div class="flex flex-row items-center justify-between mt-2">
         <div class="flex items-center cursor-pointer hover:text-base-content/50 transition-colors duration-300"
-             onClick="alert('TODO')">
+             onClick="alert('TODO')"> {{-- TODO: Task movement --}}
             <x-gmdi-keyboard-double-arrow-left class="w-10 mb-0.5 mr-1"/>
             Planned
         </div>
@@ -39,7 +39,7 @@
     </div>
 
     <div class="flex flex-wrap justify-between gap-2 mt-4">
-        <x-user-badge name="Assigned User" email="email@example.com"/>
+        <x-user-badge name="Assigned User" email="email@example.com" :is_assigned="true"/>
         <x-user-badge name="Assigned User" email="email@example.com"/>
         <x-user-badge name="Assigned User" email="email@example.com"/>
         <x-user-badge name="Assigned User" email="email@example.com"/>

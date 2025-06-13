@@ -1,7 +1,7 @@
 <x-modal modal_id="create_modal"
          title="Create a new task"
          description="Fill in the details to create a new task.">
-    <form method="POST" action="{{-- TODO: Store --}}">
+    <form method="POST" action="{{-- TODO: Store Task --}}">
         @csrf
 
         <div class="my-4 space-y-4">
@@ -34,8 +34,8 @@
                 <option value="high">High</option>
             </x-select>
 
-            {{-- Assigned to TODO: update with real data--}}
-            <x-assigned mode="create"/>
+            {{-- Assigned to --}}
+            <x-assigned mode="create" :users="$kanban->members"/>
 
             {{-- Deadline --}}
             <x-input

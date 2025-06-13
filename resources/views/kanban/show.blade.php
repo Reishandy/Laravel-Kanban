@@ -1,7 +1,7 @@
 <x-layout.app>
     <x-navbar/>
 
-    <x-kanban-header/>
+    <x-kanban-header :kanban="$kanban"/>
 
     <div class="sm:rounded-xl bg-base-200 sm:my-10 w-full sm:w-xl md:w-3xl lg:w-5xl xl:w-7xl">
         <div class="tabs tabs-border">
@@ -15,8 +15,8 @@
     @include('kanban.partials.show-edit-modal')
     @include('kanban.partials.show-delete-confirmation-modal')
 
-    {{-- Check for create form validation errors TODO--}}
-    @if($errors->hasAny(['create-title', 'create-description']))
+    {{-- Check for create form validation errors--}}
+    @if($errors->hasAny(['create-title', 'create-description', 'create-stage', 'create-priority', 'create-assigned', 'create-deadline']))
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 create_modal.showModal();
@@ -25,7 +25,7 @@
     @endif
 
     {{-- Check for edit form validation errors --}}
-    @if($errors->hasAny(['edit-title', 'edit-description']))
+    @if($errors->hasAny(['edit-title', 'edit-description', 'edit-stage', 'edit-priority', 'edit-assigned', 'edit-deadline']))
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 edit_modal.showModal();

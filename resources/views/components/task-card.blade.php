@@ -34,9 +34,13 @@
                      onclick="editTask({{ Js::from($kanban->code) }}, {{ Js::from($task->id) }}, {{ Js::from($task->title) }}, {{ Js::from($task->description) }}, {{ Js::from($task->stage) }}, {{ Js::from($task->priority) }}, {{ Js::from($task->users->pluck('email')->toArray()) }}, {{ Js::from($task->deadline) }})"/>
     </div>
 
-    {{-- TODO: Status --}}
-    <div class="rounded-lg badge badge-accent w-full">New</div>
-    <div class="rounded-lg badge badge-info w-full">Updated</div>
+    @if(session('status') === 'new-' . $task->id )
+        <div class="rounded-lg badge badge-accent w-full">New</div>
+    @endif
+
+    @if(session('status') === 'updated-' . $task->id )
+        <div class="rounded-lg badge badge-info w-full">Updated</div>
+    @endif
 
     <div class="flex flex-row items-center justify-between mt-2">
 

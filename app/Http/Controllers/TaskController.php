@@ -15,8 +15,16 @@ class TaskController extends Controller
      */
     public function move(Request $request, Kanban $kanban, Task $task)
     {
-        dd($request->all());
-        // TODO: redirect to stage tab
+        $validated = $request->validate([
+            'stage' => ['required', 'string', 'in:planned,ongoing,completed'],
+        ], [
+            'stage.in' => 'The stage must be planned, ongoing, or completed.',
+        ]);
+
+        $task->stage = $validated['stage'];
+        $task->save();
+
+        return redirect()->back()->with('status', 'updated-' . $task->id)->with('stage', $validated['stage']);
     }
 
     /**

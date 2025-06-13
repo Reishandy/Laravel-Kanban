@@ -5,9 +5,9 @@
 
     <div class="sm:rounded-xl bg-base-200 sm:my-10 w-full sm:w-xl md:w-3xl lg:w-5xl xl:w-7xl">
         <div class="tabs tabs-border">
-            <x-stage name="Planned" :is_checked="false" :kanban="$kanban" :tasks="$kanban->tasks->where('stage', 'planned')"/>
-            <x-stage name="Ongoing" :is_checked="true" :kanban="$kanban" :tasks="$kanban->tasks->where('stage', 'ongoing')" />
-            <x-stage name="Completed" :is_checked="false" :kanban="$kanban" :tasks="$kanban->tasks->where('stage', 'completed')" />
+            <x-stage name="Planned" :is_checked="session('stage') === 'planned'?: true" :kanban="$kanban" :tasks="$kanban->tasks->where('stage', 'planned')"></x-stage>
+            <x-stage name="Ongoing" :is_checked="session('stage') === 'ongoing'" :kanban="$kanban" :tasks="$kanban->tasks->where('stage', 'ongoing')" />
+            <x-stage name="Completed" :is_checked="session('stage') === 'completed'" :kanban="$kanban" :tasks="$kanban->tasks->where('stage', 'completed')" />
         </div>
     </div>
 

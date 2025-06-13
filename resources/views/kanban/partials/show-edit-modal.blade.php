@@ -35,8 +35,8 @@
                 <option value="high">High</option>
             </x-select>
 
-            {{-- Assigned to TODO: update with real data--}}
-            <x-assigned mode="edit"/>
+            {{-- Assigned to --}}
+            <x-assigned mode="edit" :users="$kanban->members->merge(collect([$kanban->user]))"/>
 
             {{-- Deadline --}}
             <x-input
@@ -49,6 +49,7 @@
             />
 
             <input type="hidden" name="task_id" id="edit-task-id">
+            <input type="hidden" name="kanban_code" id="edit-kanban-code">
         </div>
 
         <div class="flex items-center gap-2">

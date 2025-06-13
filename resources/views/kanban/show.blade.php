@@ -5,9 +5,9 @@
 
     <div class="sm:rounded-xl bg-base-200 sm:my-10 w-full sm:w-xl md:w-3xl lg:w-5xl xl:w-7xl">
         <div class="tabs tabs-border">
-            <x-stage name="Planned" :kanban="$kanban" />
-            <x-stage name="Ongoing" :is_checked="true" :kanban="$kanban" />
-            <x-stage name="Completed" :kanban="$kanban" />
+            <x-stage name="Planned" :kanban="$kanban" :tasks="$kanban->tasks->where('stage', 'planned')"/>
+            <x-stage name="Ongoing" :is_checked="true" :kanban="$kanban" :tasks="$kanban->tasks->where('stage', 'ongoing')" />
+            <x-stage name="Completed" :kanban="$kanban" :tasks="$kanban->tasks->where('stage', 'completed')" />
         </div>
     </div>
 
@@ -50,6 +50,7 @@
             try {
                 // Parse assignedTo if it's a string
                 let assignedUsers = assignedTo;
+                console.log(assignedTo)
                 if (typeof assignedTo === 'string' &&
                     (assignedTo.startsWith('[') || assignedTo.startsWith('{'))) {
                     assignedUsers = JSON.parse(assignedTo);
@@ -71,11 +72,12 @@
                 console.error("Error setting assigned users:", e);
             }
 
-            // Set hidden task ID
+            // Set hidden fields
             document.getElementById('edit-task-id').value = taskId;
+            document.getElementById('edit-kanban-code').value = kanbanCode;
 
             // Update action URLs
-            document.getElementById('edit-task-form').action = `/kanban/${kanban:code}/task/${taskId}`;
+            document.getElementById('edit-task-form').action = `/kanban/${kanbanCode}/task/${taskId}`;
 
             // Show modal
             edit_modal.showModal();
@@ -83,11 +85,12 @@
 
         function openDeleteConfirmationModal() {
             // Get data from edit form
+            const code = document.getElementById('edit-kanban-code').value;
             const id = document.getElementById('edit-task-id').value;
             document.getElementById('delete-task-title').textContent = document.getElementById('edit-title').value;
 
             // Set the form action
-            document.getElementById('confirm-delete-form').action = `/task/${id}`;
+            document.getElementById('confirm-delete-form').action = `/kanban/${code}/task/${id}`;
 
             // Close edit modal and open confirmation modal
             edit_modal.close();

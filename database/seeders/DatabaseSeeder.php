@@ -45,9 +45,12 @@ class DatabaseSeeder extends Seeder
             ]);
 
             // Assign 1-3 users to each task
-            $tasks->each(function (Task $task) use ($members) {
-                // Get 1-3 random members from the kanban's members
-                $taskUsers = $members->random(rand(1, min(3, $members->count())));
+            $tasks->each(function (Task $task) use ($members, $kanban) {
+                // Include the creator in the pool of possible assignees
+                $possibleAssignees = $members->push($kanban->user)->unique('id');
+
+                // Get 1-3 random users from the combined pool
+                $taskUsers = $possibleAssignees->random(rand(1, min(3, $possibleAssignees->count())));
 
                 // Assign the selected users to the task
                 $task->users()->attach($taskUsers->pluck('id')->toArray());

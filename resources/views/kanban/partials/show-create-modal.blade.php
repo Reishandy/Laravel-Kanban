@@ -35,7 +35,7 @@
             </x-select>
 
             {{-- Assigned to --}}
-            <x-assigned mode="create" :users="$kanban->members"/>
+            <x-assigned mode="create" :users="$kanban->members->merge(collect([$kanban->user]))"/>
 
             {{-- Deadline --}}
             <x-input

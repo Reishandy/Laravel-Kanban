@@ -15,7 +15,7 @@
                         <a href="{{ route('dashboard') }}" class="btn btn-primary">My Boards</a>
                     @else
                         <a href="{{ route('register') }}" class="btn btn-primary">Get Started</a>
-                        <a href="{{ route('login') }}" class="btn btn-outline">Login</a>
+                        <a href="{{ route('login') }}" class="btn btn-soft">Login</a>
                     @endauth
                 </div>
             </div>
@@ -119,7 +119,7 @@
                     <a href="{{ route('dashboard') }}" class="btn btn-primary btn-lg">Go to Dashboard</a>
                 @else
                     <a href="{{ route('register') }}" class="btn btn-primary btn-lg">Sign Up Now</a>
-                    <a href="{{ route('login') }}" class="btn btn-outline btn-lg">Login</a>
+                    <a href="{{ route('login') }}" class="btn btn-soft btn-lg">Login</a>
                 @endauth
             </div>
         </div>

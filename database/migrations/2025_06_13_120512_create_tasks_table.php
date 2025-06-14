@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('kanban_id')->constrained()->cascadeOnDelete();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->enum('stage', ['planned', 'ongoing', 'completed'])->default('medium');
+            $table->enum('stage', ['planned', 'ongoing', 'completed'])->default('planned');
             $table->enum('priority', ['low', 'medium', 'high'])->default('medium');
             $table->dateTime('deadline')->nullable();
             $table->timestamps();

@@ -2,6 +2,8 @@
 
 Rei's Kanban is a web-based kanban board application that helps users organize tasks and manage projects efficiently. Built with Laravel and modern web technologies, it provides a responsive and intuitive interface for task management.
 
+![Preview](public/kanban.webp)
+
 ## Demo
 
 You can try a live demo of the kanban app here: [https://kanban.reishandy.my.id](https://kanban.reishandy.my.id)

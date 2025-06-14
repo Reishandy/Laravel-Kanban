@@ -63,6 +63,9 @@ class KanbanController extends Controller
         // Detach user from kanban
         $kanban->members()->detach(Auth::id());
 
+        // Remove user from assigned tasks in this kanban
+        Auth::user()->tasks()->wherePivotIn('task_id', $kanban->tasks->pluck('id'))->detach();
+
         return redirect()->route('dashboard')->with('status', 'left');
     }
 

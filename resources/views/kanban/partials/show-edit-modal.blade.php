@@ -52,7 +52,7 @@
         </div>
 
         <div class="flex items-center gap-2">
-            <button type="submit" class="btn btn-soft">Update</button>
+            <button type="submit" class="btn btn-soft btn-primary">Update</button>
             <button type="button" class="btn btn-error" onclick="openDeleteConfirmationModal()">Delete</button>
 
             <button class="btn btn-ghost" form="edit_modal_dialog">Cancel</button>

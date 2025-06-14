@@ -24,7 +24,7 @@
             <input type="hidden" name="kanban_code" id="edit-kanban-code">
 
             <div class="flex items-center gap-2">
-                <button class="btn btn-soft">Update</button>
+                <button class="btn btn-soft btn-primary">Update</button>
                 <button type="button" class="btn btn-error" onclick="openDeleteConfirmationModal()">Delete</button>
                 <button class="btn btn-ghost" form="edit_modal_dialog">Cancel</button>
             </div>

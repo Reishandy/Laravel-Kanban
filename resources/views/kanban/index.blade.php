@@ -17,10 +17,16 @@
             </div>
         @endif
 
+        @if(session('status') === 'left')
+            <div class="flex items-center justify-center">
+                <div class="rounded-lg badge badge-error mt-6 mx-6 w-full">Kanban Left</div>
+            </div>
+        @endif
+
         <div class="m-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             @if($kanbans->isEmpty())
                 <div class="col-span-full text-center text-lg text-base-content/50">
-                        No Kanbans found, create one or join to get started!
+                    No Kanbans found, create one or join to get started!
                 </div>
             @endif
 
@@ -47,7 +53,7 @@
     {{-- Check for join form validation errors --}}
     @if($errors->has('join-code'))
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function () {
                 join_modal.showModal();
             });
         </script>
@@ -56,7 +62,7 @@
     {{-- Check for create form validation errors --}}
     @if($errors->hasAny(['create-title', 'create-description']))
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function () {
                 create_modal.showModal();
             });
         </script>
@@ -65,7 +71,7 @@
     {{-- Check for edit form validation errors --}}
     @if($errors->hasAny(['edit-title', 'edit-description']))
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function () {
                 edit_modal.showModal();
             });
         </script>

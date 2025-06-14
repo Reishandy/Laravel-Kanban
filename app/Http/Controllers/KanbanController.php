@@ -50,6 +50,23 @@ class KanbanController extends Controller
     }
 
     /**
+     * Leave a user from kanban.
+     */
+    public function leave(Request $request, Kanban $kanban): RedirectResponse
+    {
+        // Check if user is a member of the kanban
+        if (!$kanban->members->contains(Auth::user())) {
+            return redirect()->back()
+                ->withErrors(['leave' => 'You are not a member of this kanban.']);
+        }
+
+        // Detach user from kanban
+        $kanban->members()->detach(Auth::id());
+
+        return redirect()->route('dashboard')->with('status', 'left');
+    }
+
+    /**
      * Display a listing of the resource.
      */
     public function index(): View

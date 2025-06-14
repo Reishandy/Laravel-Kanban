@@ -14,6 +14,7 @@
     @include('kanban.partials.show-create-modal')
     @include('kanban.partials.show-edit-modal')
     @include('kanban.partials.show-delete-confirmation-modal')
+    @include('kanban.partials.show-leave-confirmation-modal')
 
     {{-- Check for create form validation errors--}}
     @if($errors->hasAny(['create-title', 'create-description', 'create-stage', 'create-priority', 'create-assigned', 'create-deadline']))
@@ -98,6 +99,17 @@
             // Close edit modal and open confirmation modal
             edit_modal.close();
             delete_confirmation_modal.showModal();
+        }
+
+        function openLeaveConfirmationModal() {
+            // Get the kanban title
+            document.getElementById('leave-kanban-title').textContent = document.getElementById('kanban-title').textContent;
+
+            // Set the form action for leaving the kanban
+            document.getElementById('confirm-leave-form').action = `/kanban/${document.getElementById('edit-kanban-code').value}/leave`;
+
+            // Show the leave confirmation modal
+            leave_confirmation_modal.showModal();
         }
     </script>
 </x-layout.app>

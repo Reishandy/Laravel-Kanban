@@ -10,7 +10,7 @@
             <x-code :is_joined="$kanban->members->contains(auth()->user())" :code="$kanban->code" />
         </div>
 
-        <h1 class="text-2xl font-medium text-base-content">
+        <h1 class="text-2xl font-medium text-base-content" id="kanban-title">
             {{ $kanban->title }}
         </h1>
 
@@ -37,6 +37,12 @@
             @endforeach
         </div>
 
-        <button class="btn btn-soft w-30 mt-4" onClick="create_modal.showModal()">Add</button>
+        <div class="flex flex-row gap-4">
+            <button class="btn btn-soft w-30 mt-4" onClick="create_modal.showModal()">Add</button>
+
+            @if(!(auth()->user()->id === $kanban->user->id))
+                <button class="btn btn-error w-30 mt-4" onClick="openLeaveConfirmationModal()">Leave</button>
+            @endif
+        </div>
     </div>
 </header>

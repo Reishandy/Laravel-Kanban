@@ -23,6 +23,10 @@ Route::controller(KanbanController::class)->group(function () {
         ->middleware(['auth', 'verified'])
         ->name('kanban.join');
 
+    Route::post('/kanban/{kanban:code}/leave', 'leave')
+        ->middleware(['auth', 'verified'])
+        ->name('kanban.leave');
+
     Route::post('/kanban', 'store')
         ->middleware(['auth', 'verified'])
         ->name('kanban.store');

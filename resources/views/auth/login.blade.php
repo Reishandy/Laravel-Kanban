@@ -12,7 +12,7 @@
                 <div class="divider"></div>
 
                 <div class="p-2">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form id="login-form" method="POST" action="{{ route('login') }}">
                         @csrf
 
                         {{-- Email --}}
@@ -56,3 +56,16 @@
         </div>
     </div>
 </x-layout.app>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('login-form');
+        const resetButton = document.getElementById('auth-button');
+
+        form.addEventListener('submit', function() {
+            // This runs before form submission completes
+            resetButton.disabled = true;
+            resetButton.innerHTML = '<span class="loading loading-dots loading-md"></span>';
+        });
+    });
+</script>

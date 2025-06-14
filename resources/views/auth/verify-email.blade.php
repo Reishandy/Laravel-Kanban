@@ -12,10 +12,10 @@
                 @endif
 
                 <div class="mt-4 flex items-center justify-between">
-                    <form method="POST" action="{{ route('verification.send') }}">
+                    <form id="resend-verification-email-form" method="POST" action="{{ route('verification.send') }}">
                         @csrf
 
-                        <button class="btn btn-primary">Resend Verification Email</button>
+                        <button id="resend-verification-email-button" type="submit" class="btn btn-primary">Resend Verification Email</button>
                     </form>
 
                     <form method="POST" action="{{ route('logout') }}">
@@ -28,3 +28,16 @@
         </div>
     </div>
 </x-layout.app>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('resend-verification-email-form');
+        const resetButton = document.getElementById('resend-verification-email-button');
+
+        form.addEventListener('submit', function() {
+            // This runs before form submission completes
+            resetButton.disabled = true;
+            resetButton.innerHTML = '<span class="loading loading-dots loading-md"></span>';
+        });
+    });
+</script>

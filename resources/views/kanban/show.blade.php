@@ -34,7 +34,9 @@
     @endif
 
     <script>
-        function editTask(kanbanCode, taskId, title, description, stage, priority, assignedTo, deadline) {
+        function editTask(taskId, title, description, stage, priority, assignedTo, deadline) {
+            const kanbanCode = document.getElementById('edit-kanban-code').value;
+
             // Set form values
             document.getElementById('edit-title').value = title;
             document.getElementById('edit-description').value = description;
@@ -48,33 +50,33 @@
 
             // Handle assigned users
             try {
-                // Parse assignedTo if it's a string
-                let assignedUsers = assignedTo;
-                console.log(assignedTo)
+                // Ensure assignedTo is properly handled as an array of IDs
+                let assignedUserIds = assignedTo;
+
+                // Parse assignedTo if it's a JSON string
                 if (typeof assignedTo === 'string' &&
                     (assignedTo.startsWith('[') || assignedTo.startsWith('{'))) {
-                    assignedUsers = JSON.parse(assignedTo);
+                    assignedUserIds = JSON.parse(assignedTo);
                 }
 
-                // Ensure assignedUsers is an array
-                if (!Array.isArray(assignedUsers)) {
-                    assignedUsers = assignedUsers ? [assignedUsers] : [];
+                // Ensure it's an array
+                if (!Array.isArray(assignedUserIds)) {
+                    assignedUserIds = assignedUserIds ? [assignedUserIds] : [];
                 }
 
-                // You might need to update your x-assigned component to use edit-assigned[] for the edit form
+                // Check/uncheck user checkboxes based on their ID
                 const checkboxes = document.querySelectorAll('input[name="edit-assigned[]"]');
                 checkboxes.forEach(checkbox => {
-                    // Check the box if the email is in assignedUsers
-                    checkbox.checked = assignedUsers.includes(checkbox.value);
+                    // Convert checkbox value to number for proper comparison
+                    const userId = parseInt(checkbox.value, 10);
+                    checkbox.checked = assignedUserIds.includes(userId);
                 });
-
             } catch (e) {
                 console.error("Error setting assigned users:", e);
             }
 
             // Set hidden fields
             document.getElementById('edit-task-id').value = taskId;
-            document.getElementById('edit-kanban-code').value = kanbanCode;
 
             // Update action URLs
             document.getElementById('edit-task-form').action = `/kanban/${kanbanCode}/task/${taskId}`;

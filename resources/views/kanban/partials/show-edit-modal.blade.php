@@ -44,12 +44,11 @@
                 name="edit-deadline"
                 label="Deadline"
                 placeholder="Deadline of the task"
-                required
                 helper="Enter a deadline for your task"
             />
 
             <input type="hidden" name="task_id" id="edit-task-id">
-            <input type="hidden" name="kanban_code" id="edit-kanban-code">
+            <input type="hidden" name="kanban_code" id="edit-kanban-code" value="{{ $kanban->code }}"/>
         </div>
 
         <div class="flex items-center gap-2">

@@ -12,7 +12,7 @@
                 <input type="checkbox"
                        id="{{ $mode }}-assigned-{{ $loop->index }}"
                        name="{{ $mode }}-assigned[]"
-                       value="{{ $user->email }}"
+                       value="{{ $user->id }}"
                        class="checkbox checkbox-sm mr-3">
                 <label for="{{ $mode }}-assigned-{{ $loop->index }}" class="text-sm cursor-pointer">
                     {{ $user->name }} - {{ $user->email }}

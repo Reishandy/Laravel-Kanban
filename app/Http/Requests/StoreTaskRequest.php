@@ -14,7 +14,14 @@ class StoreTaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // Deadline must be not in the past
+            'create-title' => ['required', 'string', 'max:255'],
+            'create-description' => ['nullable', 'string'],
+            'create-stage' => ['required', 'string', 'in:planned,ongoing,completed'],
+            'create-priority' => ['required', 'string', 'in:low,medium,high'],
+            'create-deadline' => ['nullable', 'date'], // after_or_equal:today
+            'create-assigned[]' => ['nullable', 'array'],
+            'create-assigned.*' => ['exists:users,id', 'distinct'],
+            'kanban_code' => ['required', 'string', 'exists:kanbans,code', 'regex:/^[A-Z0-9]{4}-[A-Z0-9]{4}$/i'],
         ];
     }
 }

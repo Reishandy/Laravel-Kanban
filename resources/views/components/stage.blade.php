@@ -19,6 +19,12 @@
 
 <input type="radio" name="stages" class="tab sm:text-lg m-2" aria-label="{{ $name }}" {{ $is_checked? 'checked="checked"': ''}}/>
 <div class="tab-content sm:border-base-300 sm:bg-base-100 p-6">
+    @if(session('status') === 'deleted')
+        <div class="flex items-center justify-center">
+            <div class="rounded-lg badge badge-error my-6 w-full">Task Deleted</div>
+        </div>
+    @endif
+
     <div class="gap-4 grid grid-cols-1 lg:grid-cols-2">
         @foreach($sortedTasks as $task)
             <x-task-card :kanban="$kanban" :task="$task"/>

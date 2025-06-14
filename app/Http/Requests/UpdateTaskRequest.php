@@ -14,7 +14,15 @@ class UpdateTaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // Deadline must be not in the past
+            'edit-title' => ['required', 'string', 'max:255'],
+            'edit-description' => ['nullable', 'string'],
+            'edit-stage' => ['required', 'string', 'in:planned,ongoing,completed'],
+            'edit-priority' => ['required', 'string', 'in:low,medium,high'],
+            'edit-deadline' => ['nullable', 'date'], // after_or_equal:today
+            'edit-assigned[]' => ['nullable', 'array'],
+            'edit-assigned.*' => ['exists:users,id', 'distinct'],
+            'task_id' => ['required', 'integer', 'exists:tasks,id'],
+            'kanban_code' => ['required', 'string', 'exists:kanbans,code', 'regex:/^[A-Z0-9]{4}-[A-Z0-9]{4}$/i'],
         ];
     }
 }

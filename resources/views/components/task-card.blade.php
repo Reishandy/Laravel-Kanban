@@ -5,9 +5,9 @@
 
 @php
     $borderColor = match($task->stage) {
-        'planned' => 'border-info',
-        'ongoing' => 'border-secondary',
-        'completed' => 'border-success',
+        'planned' => 'border-info/50',
+        'ongoing' => 'border-secondary/50',
+        'completed' => 'border-success/50',
         default => 'border-base-content',
     };
 
@@ -29,9 +29,15 @@
 <div class="card bg-base-100 border-1 {{ $borderColor }} shadow-xl rounded-xl p-6 hover:bg-neutral/40 hover:border-base-content transition-colors duration-300">
     <div class="flex items-center justify-between mb-2">
         <div class="badge {{ $priorityColor }}">{{ $task->priority }}</div>
-        <div class="badge badge-outline">{{ $task->deadline }}</div>
+
+        @if($task->deadline)
+            <div class="badge badge-outline {{ $task->deadline < now() ? 'badge-error' : 'badge-info' }}">
+                {{ $task->deadline }}
+            </div>
+        @endif
+
         <x-gmdi-edit class="w-5 mb-1 cursor-pointer hover:text-base-content/50 transition-colors duration-300"
-                     onclick="editTask({{ Js::from($kanban->code) }}, {{ Js::from($task->id) }}, {{ Js::from($task->title) }}, {{ Js::from($task->description) }}, {{ Js::from($task->stage) }}, {{ Js::from($task->priority) }}, {{ Js::from($task->users->pluck('email')->toArray()) }}, {{ Js::from($task->deadline) }})"/>
+                     onclick="editTask({{ Js::from($task->id) }}, {{ Js::from($task->title) }}, {{ Js::from($task->description) }}, {{ Js::from($task->stage) }}, {{ Js::from($task->priority) }}, {{ Js::from($task->users->pluck('id')->toArray()) }}, {{ Js::from($task->deadline) }})"/>
     </div>
 
     @if(session('status') === 'new-' . $task->id )

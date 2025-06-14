@@ -43,10 +43,11 @@
                 name="create-deadline"
                 label="Deadline"
                 placeholder="Deadline of the task"
-                required
                 helper="Enter a deadline for your task"
             />
         </div>
+
+        <input type="hidden" name="kanban_code" id="create-kanban-code" value="{{ $kanban->code }}"/>
 
         <div class="flex items-center gap-2">
             <button class="btn btn-soft">Create</button>

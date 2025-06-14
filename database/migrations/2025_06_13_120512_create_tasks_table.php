@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->enum('stage', ['planned', 'ongoing', 'completed'])->default('medium');
             $table->enum('priority', ['low', 'medium', 'high'])->default('medium');
-            $table->dateTime('deadline');
+            $table->dateTime('deadline')->nullable();
             $table->timestamps();
         });
     }

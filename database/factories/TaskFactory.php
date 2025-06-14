@@ -21,7 +21,7 @@ class TaskFactory extends Factory
             'description' => $this->faker->paragraph(),
             'stage' => $this->faker->randomElement(['planned', 'ongoing', 'completed']),
             'priority' => $this->faker->randomElement(['low', 'medium', 'high']),
-            'deadline' => $this->faker->dateTimeBetween('-10 days')->format('Y-m-d'),
+            'deadline' => $this->faker->dateTimeBetween('-3 days', '3 days')->format('Y-m-d'),
         ];
     }
 }

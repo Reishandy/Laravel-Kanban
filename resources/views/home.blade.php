@@ -113,7 +113,7 @@
     <section class="py-16 bg-base-200 w-full">
         <div class="max-w-4xl mx-auto px-4 text-center">
             <h2 class="text-3xl font-bold mb-4">Ready to boost your productivity?</h2>
-            <p class="mb-8 text-lg">Join thousands of users who organize their work with Rei's Kanban.</p>
+            <p class="mb-8 text-lg">Join 'Me' who organize their work with Rei's Kanban.</p>
             <div class="flex flex-wrap justify-center gap-4">
                 @auth
                     <a href="{{ route('dashboard') }}" class="btn btn-primary btn-lg">Go to Dashboard</a>

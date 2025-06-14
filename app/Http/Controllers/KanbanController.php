@@ -57,7 +57,7 @@ class KanbanController extends Controller
         $user = Auth::user();
 
         return view('kanban.index', [
-            'kanbans' => Kanban::with('user')
+            'kanbans' => Kanban::with('user')->with('members')
                 ->where(function ($query) use ($user) {
                     $query->where('kanbans.user_id', $user->id)
                         ->orWhereHas('members', function ($subQuery) use ($user) {

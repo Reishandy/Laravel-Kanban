@@ -66,27 +66,6 @@
     @endif
 
     <script>
-        function copyToClipboard(elementId, tooltipId) {
-            const text = document.getElementById(elementId).textContent.trim();
-            const tooltipElement = document.getElementById(tooltipId);
-
-            navigator.clipboard.writeText(text).then(() => {
-                // Show the tooltip
-                tooltipElement.classList.add('tooltip-open');
-                tooltipElement.classList.add('tooltip');
-
-                // Hide the tooltip after 1 second
-                setTimeout(() => {
-                    tooltipElement.classList.remove('tooltip-open');
-                    tooltipElement.classList.remove('tooltip');
-                }, 1000);
-
-                console.log('Copied to clipboard!');
-            }).catch(err => {
-                console.error('Failed to copy: ', err);
-            });
-        }
-
         function openEditModal(code, title, description) {
             // Set form values
             document.getElementById('edit-kanban-code').value = code;

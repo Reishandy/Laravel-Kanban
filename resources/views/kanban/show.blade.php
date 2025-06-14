@@ -46,7 +46,8 @@
             document.querySelector('[name="edit-priority"]').value = priority;
 
             // Set deadline
-            document.querySelector('[name="edit-deadline"]').value = deadline;
+            // Format deadline for form input (YYYY-MM-DD)
+            document.querySelector('[name="edit-deadline"]').value = deadline ? new Date(deadline).toISOString().split('T')[0] : '';
 
             // Handle assigned users
             try {

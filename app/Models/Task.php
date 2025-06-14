@@ -26,10 +26,6 @@ class Task extends Model
         'priority',
     ];
 
-    protected $casts = [
-        'deadline' => 'date',
-    ];
-
     public function kanban(): BelongsTo
     {
         return $this->belongsTo(Kanban::class);

@@ -1,3 +1,4 @@
+@php use Carbon\Carbon; @endphp
 @props([
     'kanban',
     'task',
@@ -26,13 +27,14 @@
 };
 @endphp
 
-<div class="card bg-base-100 border-1 {{ $borderColor }} shadow-xl rounded-xl p-6 hover:bg-neutral/40 hover:border-base-content transition-colors duration-300">
+<div
+    class="card bg-base-100 border-1 {{ $borderColor }} shadow-xl rounded-xl p-6 hover:bg-neutral/40 hover:border-base-content transition-colors duration-300">
     <div class="flex items-center justify-between mb-2">
         <div class="badge {{ $priorityColor }}">{{ $task->priority }}</div>
 
         @if($task->deadline)
             <div class="badge badge-outline {{ $task->deadline < now() ? 'badge-error' : 'badge-info' }}">
-                {{ $task->deadline }}
+                {{ $task->deadline ? Carbon::parse($task->deadline)->format('d M, Y') : '' }}
             </div>
         @endif
 
@@ -51,17 +53,17 @@
     <div class="flex flex-row items-center justify-between mt-2">
 
         <x-stage-button
-                :kanban_code="$kanban->code"
-                :task_id="$task->id"
-                direction="left"
-                :stage="$stagePrev"
+            :kanban_code="$kanban->code"
+            :task_id="$task->id"
+            direction="left"
+            :stage="$stagePrev"
         />
 
         <x-stage-button
-                :kanban_code="$kanban->code"
-                :task_id="$task->id"
-                direction="right"
-                :stage="$stageNext"
+            :kanban_code="$kanban->code"
+            :task_id="$task->id"
+            direction="right"
+            :stage="$stageNext"
         />
     </div>
 

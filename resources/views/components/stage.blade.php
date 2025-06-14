@@ -26,6 +26,12 @@
     @endif
 
     <div class="gap-4 grid grid-cols-1 lg:grid-cols-2">
+        @if($tasks->isEmpty())
+            <div class="col-span-full text-center text-lg text-base-content/50">
+                No tasks found in this stage, add one to get started!
+            </div>
+        @endif
+
         @foreach($sortedTasks as $task)
             <x-task-card :kanban="$kanban" :task="$task"/>
         @endforeach

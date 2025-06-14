@@ -18,6 +18,12 @@
         @endif
 
         <div class="m-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            @if($kanbans->isEmpty())
+                <div class="col-span-full text-center text-lg text-base-content/50">
+                        No Kanbans found, create one or join to get started!
+                </div>
+            @endif
+
             @foreach($kanbans as $kanban)
                 <x-kanban-card
                     :is_new="session('status') === 'new-' . $kanban->code "

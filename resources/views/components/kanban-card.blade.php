@@ -5,7 +5,7 @@
 ])
 
 <div class="card bg-base-100 shadow-xl rounded-xl hover:bg-neutral/40 transition-colors duration-300">
-    <a href="/kanban/{{ $kanban->code }}" class="h-full">
+    <a href="/kanban/{{ $kanban->code }}" class="cursor-default h-full">
         <div class="card-body flex flex-col justify-between h-full">
             <div class="flex justify-between flex-col items-start gap-2">
 

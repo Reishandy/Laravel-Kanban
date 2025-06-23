@@ -38,7 +38,7 @@ You can try a live demo of the kanban app here: [https://kanban.reishandy.my.id]
 
    ```bash
    git clone https://github.com/Reishandy/Laravel-Kanban.git
-   cd reis-kanban
+   cd Laravel-Kanban
    
 2. **Install PHP Dependencies:**
 
